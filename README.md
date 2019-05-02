@@ -1,1 +1,63 @@
-# TicketMachine
+# Ticket Machine
+
+# Overview
+
+The solution consist of the projects:
+
+## TicketMachine
+This is the source code for the TicketMachine.
+
+To perform the search for matching stations I have implemented two algorithms whihc are in the folder BasicStrategy and TreeBasedStrategy.
+BasicStrategy is a simple implementation using LINQ which is used as a baseline for the performance compairson. TreeBased strategy is an implementation using a tree to allow faster retrieval at the cost slower satrt up as the tree is created. 
+
+Diagram of the tree structure
+(https://raw.githubusercontent.com/JonQuxBurton/TicketMachine/master/Tree.png)
+
+
+The data for the stations is loaded by the code in the Data folder.
+
+
+## TicketMachine.ConsoleApp
+This is console app to interactively test the TicketMachine. 
+
+It can be run with the following command:
+dotnet run -c Release
+
+(from Powershell/command prompt and from the folder \TicketMachine\TicketMachine.ConsoleApp\)
+
+It can also run a performance test where a large number of GetSuggestion() calls are run and the total time recorded. This is done for the both Basic and TreeBased strategies. The command for this test is:
+dotnet run -c Release perf 
+
+It can also be run with the Basic strategy (instead of the default TreeBased strategy) using the following command:
+dotnet run -c Release basic 
+
+## TicketMachine.Tests
+These are the tests for the TicketMachine.
+
+
+# Performance Comparisons
+
+## Execution Time
+
+Running the performance test gave the following result (in seconds):
+
+Run		Basic Strategy	TreeBased Strategy
+1		16.9			0.020
+2		17.3 			0.028
+3		18.8 			0.035
+Average	17.7			0.028
+
+So the TreeBased Strategy is considerably faster (approximately ~600 times faster).
+
+
+## Memory
+
+Using the dotMemory profiler, and performing search with the letters 'DART' gave the following results:
+
+Basic		.NET Total: 321 KB
+TreeBased	.NET Total: 8.74 MB
+
+So the TreeBased Strategy uses much more memory however it is still only a small amount.
+
+
+
