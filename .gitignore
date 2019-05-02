@@ -46,3 +46,4 @@ BasketApi/.vs/BasketApi/v15/Server/sqlite3/db.lock
 BasketApi/.vs
 bin/
 obj/
+.vs/
