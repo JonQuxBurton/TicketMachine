@@ -19,14 +19,17 @@ The data for the stations is loaded by the code in the Data folder.
 This is console app to interactively test the Ticket Machine. 
 
 It can be run with the following command:
+
 `dotnet run -c Release`
 
 (from a Powershell/command prompt and from the folder \TicketMachine\TicketMachine.ConsoleApp\)
 
 It can also run a performance test where a large number of GetSuggestion() calls are performed and the total execution time returned. This is done for the both Basic and TreeBased strategies. The command for this test is:
+
 `dotnet run -c Release perf`
 
 It can also be run with the Basic strategy (instead of the default TreeBased strategy) using the following command:
+
 `dotnet run -c Release basic`
 
 ## TicketMachine.Tests
@@ -49,12 +52,14 @@ So the TreeBased Strategy is considerably faster (approximately ~600 times faste
 
 ## Memory
 
-Using the dotMemory profiler, and performing search with the letters 'DART' gave the following results:
+Using the dotMemory profiler, and performing a search with the letters 'DART' gave me the following results:
 
-Basic		.NET Total: 321 KB
-TreeBased	.NET Total: 8.74 MB
+|           |.NET Total |
+|-----------|-----------|
+|Basic      | 321 KB    |
+|TreeBased	| 8.74 MB   |
 
-So the TreeBased Strategy uses much more memory however it is still only a small amount.
+So the TreeBased Strategy uses much more memory than the Basic, however it is still only a small amount (less than 9 MB).
 
 
 
