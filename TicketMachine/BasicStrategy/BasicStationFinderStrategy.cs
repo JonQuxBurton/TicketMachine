@@ -28,11 +28,5 @@ namespace TicketMachine.BasicStrategy
                 Stations = stations
             };
         }
-
-        [ExcludeFromCodeCoverage]
-        public void Reset()
-        {
-            // Nothing needs to be done here.
-        }
     }
 }

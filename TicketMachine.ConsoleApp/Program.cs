@@ -2,7 +2,7 @@
 using System.Linq;
 using TicketMachine.BasicStrategy;
 using TicketMachine.Data;
-using TicketMachine.TreeBasedStrategy;
+using TicketMachine.TrieBasedStrategy;
 
 namespace TicketMachine.ConsoleApp
 {
@@ -12,11 +12,15 @@ namespace TicketMachine.ConsoleApp
         {
             var rawDataGetter = new RawDataGetter();
             var dataStore = new DataStore(rawDataGetter);
-            var treeFactory = new TreeFactory();
-            var stationsTree = treeFactory.Build(dataStore.GetStations());
 
-            IStationFinderStrategy finderStrategy = new TreeBasedStationFinderStrategy(stationsTree);
+            var stationsTrie = new Trie();
+            foreach (var station in dataStore.GetStations())
+            {
+                stationsTrie.AddWord(station);
+            }
 
+            IStationFinderStrategy finderStrategy = new TrieBasedStationFinderStrategy(stationsTrie);
+            
             if (args.Length > 0)
             {
                 if (args.First() == "perf")
@@ -24,7 +28,7 @@ namespace TicketMachine.ConsoleApp
                     var basicStrategy = new BasicStationFinderStrategy(dataStore.GetStations());
 
                     var timedTest = new TimedTest();
-                    timedTest.Execute("TreeBased", dataStore, finderStrategy);
+                    timedTest.Execute("TrieBased", dataStore, finderStrategy);
 
                     timedTest = new TimedTest();
                     timedTest.Execute("Basic", dataStore, basicStrategy);
@@ -64,7 +68,6 @@ namespace TicketMachine.ConsoleApp
                     userInput += read.KeyChar.ToString().ToUpperInvariant();
                 }
 
-                finder.Reset();
                 var suggestions = finder.GetSuggestions(userInput);
 
                 Console.WriteLine($"\n\nUserInput: {userInput}");

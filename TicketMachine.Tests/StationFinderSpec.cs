@@ -26,19 +26,5 @@ namespace TicketMachine.Tests
                 actual.Should().Be(expected);
             }
         }
-
-        public class ResetShould
-        {
-            [Fact]
-            public void ResetStationFinderStrategy()
-            {
-                var stationFinderStrategyMock = new Mock<IStationFinderStrategy>();
-                var sut = new StationFinder(stationFinderStrategyMock.Object);
-
-                sut.Reset();
-
-                stationFinderStrategyMock.Verify(x => x.Reset());
-            }
-        }
     }
 }

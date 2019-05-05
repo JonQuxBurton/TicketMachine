@@ -16,10 +16,5 @@
         {
             return this.stationFinder.GetSuggestions(userInput);
         }
-
-        public void Reset()
-        {
-            this.stationFinder.Reset();
-        }
     }
 }
