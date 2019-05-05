@@ -7,7 +7,7 @@ The solution consists of the following projects:
 ## TicketMachine
 This is the source code for the Ticket Machine.
 
-To perform the search for matching stations, I have implemented two algorithms which are in the folders BasicStrategy and TrieBasedStrategy. BasicStrategy is a simple implementation using LINQ, which is used as a baseline for the performance comparison tests. The TrieBased Strategy is an implementation using a trie for faster retrieval time at the cost slower start up time (as the trie gets created).
+To perform the search for matching stations, I have implemented two algorithms which are in the folders BasicStrategy and TrieBasedStrategy. BasicStrategy is a simple implementation using LINQ, which is used as a baseline for the performance comparison tests. The TrieBased Strategy is an implementation using a trie for faster retrieval time at the cost of slower start up time (as the trie is being created).
 
 The Trie is made up of Letter Nodes which represent each letter of the station name, and Leaf Nodes which contain the full name of a station.
 
@@ -25,11 +25,11 @@ It can be run with the following command:
 
 (from a Powershell/command prompt and from the folder \TicketMachine\TicketMachine.ConsoleApp\)
 
-It can also run a performance test where a large number of GetSuggestion() calls are performed and the total execution time returned. This is done for the both Basic and TreeBased strategies. The command for this test is:
+It can also run a performance test where a large number of GetSuggestion() calls are performed and the total execution time returned. This is done for the both Basic and TrieBased strategies. The command for this test is:
 
 `dotnet run -c Release perf`
 
-It can also be run with the Basic strategy (instead of the default TreeBased strategy) using the following command:
+It can also be run with the Basic strategy (instead of the default TrieBased strategy) using the following command:
 
 `dotnet run -c Release basic`
 
@@ -49,7 +49,7 @@ Running the performance tests gave me the following result (in seconds):
 |3		  |15.9 			    |0.167              |
 |Average|16.7			      |0.167              |
 
-So the TreeBased Strategy is considerably faster (approximately ~100 times faster).
+So the TrieBased Strategy is considerably faster (approximately ~100 times faster).
 
 ## Memory
 
@@ -58,9 +58,9 @@ Using the dotMemory profiler, and performing a search with the letters 'DART' ga
 |           |.NET Total |
 |-----------|-----------|
 |Basic      | 321 KB    |
-|TreeBased	| 7.00 MB   |
+|TrieBased	| 7.00 MB   |
 
-So the TreeBased Strategy uses much more memory than the Basic, however it is still only a small amount (7 MB).
+So the TrieBased Strategy uses much more memory than the Basic, however it is still only a small amount (7 MB).
 
 
 
