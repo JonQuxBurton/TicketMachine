@@ -22,7 +22,8 @@ namespace TicketMachine.Tests.TrieBasedStrategy
             [Fact]
             public void CreateValueNode()
             {
-                var sut = new Node('A', "ABER");
+                var sut = new Node('A');
+                sut.AddValue("ABER");
 
                 sut.IsLeaf.Should().BeTrue();
                 sut.HasValue.Should().BeTrue();
@@ -69,7 +70,8 @@ namespace TicketMachine.Tests.TrieBasedStrategy
             [Fact]
             public void ReturnTrueForValueNode()
             {
-                var sut = new Node('A', "ABER");
+                var sut = new Node('A');
+                sut.AddValue("ABER");
 
                 var actual = sut.HasValue;
 

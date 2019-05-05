@@ -14,10 +14,9 @@ namespace TicketMachine.TrieBasedStrategy
         private List<Node> childrenList = new List<Node>();
         private List<Node> childrenListInReverseOrder = new List<Node>();
 
-        public Node(char letter, string value = null)
+        public Node(char letter)
         {
             Letter = letter;
-            this.Value = value;
         }
 
         public char Letter { get; }

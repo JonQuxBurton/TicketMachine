@@ -24,7 +24,7 @@ namespace TicketMachine.Tests.TrieBasedStrategy
 
                 sut.Visit(trie.Root, expectedAction);
 
-                actual.Select(x => x.Letter).Should().Equal('_', 'A', 'B', 'E', 'R');
+                actual.Select(x => x.Letter).Should().Equal(Trie.RootSymbol, 'A', 'B', 'E', 'R');
             }
 
             [Fact]
@@ -42,7 +42,7 @@ namespace TicketMachine.Tests.TrieBasedStrategy
 
                 sut.Visit(trie.Root, expectedAction);
 
-                actual.Select(x => x.Letter).Should().Equal('_', 'A', 'B', 'C', 'D');
+                actual.Select(x => x.Letter).Should().Equal(Trie.RootSymbol, 'A', 'B', 'C', 'D');
             }
 
             [Fact]

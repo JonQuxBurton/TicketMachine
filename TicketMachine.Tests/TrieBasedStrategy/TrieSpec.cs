@@ -14,7 +14,7 @@ namespace TicketMachine.Tests.TrieBasedStrategy
             {
                 var sut = new Trie();
 
-                sut.Root.Letter.Should().Be('_');
+                sut.Root.Letter.Should().Be(Trie.RootSymbol);
                 sut.Root.IsLeaf.Should().BeTrue();
                 sut.Root.HasValue.Should().BeFalse();
             }
