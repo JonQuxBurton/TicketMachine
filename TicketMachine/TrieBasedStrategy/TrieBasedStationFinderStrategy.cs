@@ -9,31 +9,33 @@ namespace TicketMachine.TrieBasedStrategy
     public class TrieBasedStationFinderStrategy : IStationFinderStrategy
     {
         private readonly Trie trie;
+        private readonly IVisitor visitor;
 
-        public TrieBasedStationFinderStrategy(Trie trie)
+        public TrieBasedStationFinderStrategy(Trie trie, IVisitor visitor)
         {
             this.trie = trie;
+            this.visitor = visitor;
         }
 
         public Suggestions GetSuggestions(string userInput)
         {
-            var node = trie.Root;
+            var matchingNode = trie.Root;
             var noMatch = false;
 
             foreach (var letter in userInput)
             {
-                var nextNode = node.GetChild(letter);
+                var nextNode = matchingNode.GetChild(letter);
 
                 if (nextNode != null)
-                    node = nextNode;
+                {
+                    matchingNode = nextNode;
+                }
                 else
                 {
                     noMatch = true;
                     break;
                 }
             }
-
-            var visitor = new Visitor();
 
             var stations = new List<string>();
 
@@ -45,11 +47,11 @@ namespace TicketMachine.TrieBasedStrategy
                 }
             };
 
-            visitor.Visit(node, act);
+            visitor.Visit(matchingNode, act);
 
             return new Suggestions()
             {
-                NextLetters = noMatch ? new char[0] : node.NextLetters,
+                NextLetters = noMatch ? new char[0] : matchingNode.NextLetters,
                 Stations = stations
             };
         }

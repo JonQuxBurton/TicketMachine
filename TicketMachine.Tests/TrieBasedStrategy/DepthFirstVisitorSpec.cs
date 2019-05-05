@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TicketMachine.Tests.TrieBasedStrategy
 {
-    public class VisitorSpec
+    public class DepthFirstVisitorSpec
     {
         public class VisitShould
         {
@@ -18,7 +18,7 @@ namespace TicketMachine.Tests.TrieBasedStrategy
                 var trie = new Trie();
                 trie.AddWord("ABER");
 
-                var sut = new Visitor();
+                var sut = new DepthFirstVisitor();
                 var actual = new List<Node>();
                 Action<Node> expectedAction = x => { actual.Add(x); };
 
@@ -36,7 +36,7 @@ namespace TicketMachine.Tests.TrieBasedStrategy
                 trie.AddWord("AC");
                 trie.AddWord("AD");
 
-                var sut = new Visitor();
+                var sut = new DepthFirstVisitor();
                 var actual = new List<Node>();
                 Action<Node> expectedAction = x => { actual.Add(x); };
 
@@ -49,7 +49,7 @@ namespace TicketMachine.Tests.TrieBasedStrategy
             public void VisitRootNode()
             {
                 var trie = new Trie();
-                var sut = new Visitor();
+                var sut = new DepthFirstVisitor();
                 var expectedAction = new Mock<Action<Node>>();
 
                 sut.Visit(trie.Root, expectedAction.Object);

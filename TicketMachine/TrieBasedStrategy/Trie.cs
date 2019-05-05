@@ -24,7 +24,7 @@
 
                 if (!nextNode.HasChild(letter))
                 {
-                    if (i == word.Length - 1)
+                    if (IsFinalLetter(word, i))
                         child = new Node(letter, word);
                     else
                         child = new Node(letter);
@@ -32,13 +32,18 @@
                 else
                 {
                     child = nextNode.GetChild(letter);
-                    if (i == word.Length - 1)
+                    if (IsFinalLetter(word, i))
                         child.AddValue(word);
                 }
 
                 nextNode.AddChild(child);
                 nextNode = child;
             }
+        }
+
+        private static bool IsFinalLetter(string word, int i)
+        {
+            return i == word.Length - 1;
         }
     }
 }

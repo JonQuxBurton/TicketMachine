@@ -19,7 +19,8 @@ namespace TicketMachine.ConsoleApp
                 stationsTrie.AddWord(station);
             }
 
-            IStationFinderStrategy finderStrategy = new TrieBasedStationFinderStrategy(stationsTrie);
+            IVisitor visitor = new DepthFirstVisitor();
+            IStationFinderStrategy finderStrategy = new TrieBasedStationFinderStrategy(stationsTrie, visitor);
             
             if (args.Length > 0)
             {

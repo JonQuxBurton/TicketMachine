@@ -16,8 +16,8 @@ namespace TicketMachine.Tests.TrieBasedStrategy
                 {
                     trie.AddWord(station);
                 }
-
-                return new TrieBasedStationFinderStrategy(trie);
+                IVisitor visitor = new DepthFirstVisitor();
+                return new TrieBasedStationFinderStrategy(trie, visitor);
             }
 
             [Fact]
